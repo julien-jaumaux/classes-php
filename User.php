@@ -4,6 +4,7 @@
     {
         private $id;
         public $login;
+        private $password;
         public $email;
         public $firstname;
         public $lastname;
@@ -29,17 +30,20 @@
         }
     
     
-        //FUNCTION 
+        //FUNCTION REGISTER
 
-        public function register($login, $email, $firstname, $lastname)
+        public function register($login, $password, $email, $firstname, $lastname)
         {
-        $this->bd->query("INSERT INTO `utilisateurs` (`login`, `email`, `firstname`, `lastname`) VALUES ('$login','$email','$firstname' ,'$lastname')");
+        $this->bd->query("INSERT INTO `utilisateurs` (`login`, `password`, `email`, `firstname`, `lastname`) VALUES ('$login', '$password','$email','$firstname' ,'$lastname')");
         }
+
+
+  
 
     }
 
     $User = new User();
-    $User->register('ju', "julien@.com", "julien", "jaumaux");
+    $User->register('ju', 'jjj', "julien@.com", "julien", "jaumaux");
 
     
     
