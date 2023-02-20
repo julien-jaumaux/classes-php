@@ -1,5 +1,5 @@
 <?php
-
+    session_start();
     class User
     {
         private $id;
@@ -25,25 +25,40 @@
         if (!$this->bd) {
         die("Connexion lost");
         } else {
-        echo "Connexion établie";
+        echo "Connexion établie <br>";
         }
         }
     
     
         //FUNCTION REGISTER
 
-        public function register($login, $password, $email, $firstname, $lastname)
-        {
+        public function register($login, $password, $email, $firstname, $lastname){
         $this->bd->query("INSERT INTO `utilisateurs` (`login`, `password`, `email`, `firstname`, `lastname`) VALUES ('$login', '$password','$email','$firstname' ,'$lastname')");
         }
 
+              //FUNCTION CONNECT
 
-  
+             public function connect($login, $password){
+             $req = $this->bd->query("SELECT * FROM utilisateurs WHERE login = '".$login."' AND password = '".$password."'");
+             if(mysqli_num_rows($req) == 1) {
+                
+                 $_SESSION['login'] = $login;
+                 $_SESSION['password'] = $password;
+                 echo "bienvenue $login ";
+
+            } else {
+            
+                echo "vous n'etes pas connecté";
+            }
+            
+            }
+
+            public function disconnect()
 
     }
-
-    $User = new User();
-    $User->register('ju', 'jjj', "julien@.com", "julien", "jaumaux");
+    // var_dump($_SESSION);
+    // $User = new User();
+    // $User->connect('test', 'test', 'test@com', 'test', 'test');
 
     
     
