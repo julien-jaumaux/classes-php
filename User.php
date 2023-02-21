@@ -70,15 +70,25 @@
                 echo "utilisateur supprimé";
             }
 
+            //FUNCTION UPDATE
+
+            public function update($login, $password, $email, $firstname, $lastname){
+                $this->bd->query("UPDATE utilisateurs SET login = '$login', password = '$password', email = '$email', firstname = '$firstname', lastname = '$lastname' WHERE login = '".$_SESSION["login"]."'");
+                echo "votre compte a été modifié";
+            }
+            
+
     }
     
     $User = new User();
+
     //$User->register('test4', 'test4', 'test4@com', 'test4', 'test4' )
-    //$User->connect('test4', 'test4');
+    // $User->connect('test4', 'test4');
     //$User->disconnect();
     //$User->delete();
+    //$User->update('test41', 'test41', 'test41@com', 'test41', 'test41');
 
-    //var_dump($_SESSION);
+    var_dump($_SESSION);
 
     
     
