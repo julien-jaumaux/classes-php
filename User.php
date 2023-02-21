@@ -1,5 +1,6 @@
 <?php
     session_start();
+
     class User
     {
         private $id;
@@ -38,13 +39,13 @@
 
               //FUNCTION CONNECT
 
-             public function connect($login, $password){
+        public function connect($login, $password){
              $req = $this->bd->query("SELECT * FROM utilisateurs WHERE login = '".$login."' AND password = '".$password."'");
-             if(mysqli_num_rows($req) == 1) {
+                if(mysqli_num_rows($req) == 1) {
                 
-                 $_SESSION['login'] = $login;
-                 $_SESSION['password'] = $password;
-                 echo "bienvenue $login ";
+                    $_SESSION['login'] = $login;
+                    $_SESSION['password'] = $password;
+                    echo "bienvenue $login ";
 
             } else {
             
@@ -52,13 +53,32 @@
             }
             
             }
+            
+            //FUNCTION DISCONNECT
 
-            public function disconnect()
+            public function disconnect(){
+                session_unset();
+                session_destroy();
+                echo "vous êtes déconnecté <br>";
+            }
+
+            //FUNCTION DELETE
+
+            public function delete(){
+                $this->bd->query("DELETE FROM utilisateurs WHERE login ='".$_SESSION['login']."'");
+                session_destroy();
+                echo "utilisateur supprimé";
+            }
 
     }
-    // var_dump($_SESSION);
-    // $User = new User();
-    // $User->connect('test', 'test', 'test@com', 'test', 'test');
+    
+    $User = new User();
+    //$User->register('test4', 'test4', 'test4@com', 'test4', 'test4' )
+    //$User->connect('test4', 'test4');
+    //$User->disconnect();
+    //$User->delete();
+
+    //var_dump($_SESSION);
 
     
     
