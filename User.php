@@ -105,6 +105,30 @@
                 var_dump($req);
                 return $req;    
             }
+            //FUNCTION GETEMAIL
+
+            public function getEmail(){
+                $req = $this->bd->query("SELECT email FROM utilisateurs WHERE login = '".$_SESSION["login"]."'");
+                $req = $req->fetch_all(MYSQLI_ASSOC);
+                var_dump($req);
+                return $req;    
+            }
+            //FUNCTION GETFIRSTNAME
+
+            public function getFirstName(){
+                $req = $this->bd->query("SELECT firstname FROM utilisateurs WHERE login = '".$_SESSION["login"]."'");
+                $req = $req->fetch_all(MYSQLI_ASSOC);
+                var_dump($req);
+                return $req;    
+            }
+            //FUNCTION GETLASTNAME
+
+            public function getLastName(){
+                $req = $this->bd->query("SELECT lastname FROM utilisateurs WHERE login = '".$_SESSION["login"]."'");
+                $req = $req->fetch_all(MYSQLI_ASSOC);
+                var_dump($req);
+                return $req;    
+            }
 
     }
     
@@ -116,9 +140,9 @@
     //$User->delete();
     //$User->update('test41', 'test41', 'test41@com', 'test41', 'test41');$User->isConnected();
     //$User->isConnected();
-    $User->getLogin();
+    //$User->getLogin();
     //$User->getEmail();
-    //$User->geFirstName();
+    //$User->getFirstName();
     //$User->getLastName();
 
     //var_dump($_SESSION);
