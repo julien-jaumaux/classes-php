@@ -88,6 +88,15 @@
                 }
             }
 
+            //FUNCTION GETALLINFOS
+
+            public function getAllInfos(){
+                $req = $this->bd->query("SELECT * FROM utilisateurs WHERE login = '".$_SESSION["login"]."'");
+                $req = $req->fetch_all(MYSQLI_ASSOC);
+                var_dump($req);
+                return $req;    
+            }
+
     }
     
     $User = new User();
@@ -98,9 +107,9 @@
     //$User->delete();
     //$User->update('test41', 'test41', 'test41@com', 'test41', 'test41');$User->isConnected();
     //$User->isConnected();
-    
+    $User->getAllInfos();
 
-    var_dump($_SESSION);
+    //var_dump($_SESSION);
 
     
     
