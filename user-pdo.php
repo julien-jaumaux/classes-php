@@ -79,9 +79,22 @@ class Userpdo
                 $updateUser->execute([$login, $password, $email, $firstname, $lastname, $_SESSION['login']]);
             }
 
+            //FUNCTION ISCONNECTED
+
+            public function isConnected(){
+                if(isset($_SESSION['login'])){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+
             //FUNCTION GETALLINFOS
 
+            public function getAllInfos(){
 
+            }
 
             //FUNCTION GETLOGIN
 
@@ -105,9 +118,8 @@ $newUser = new Userpdo();
 // $newUser->disconnect();
 // $newUser->delete();
 // $newUser->update("test51","test51","test51@com","test51","test51");
-// $newUser->getLogin();
 // $newUser->delete();
-// $newUser->isConnected();
+ $newUser->isConnected();
 // $newUser->getAllinfos();
 // $newUser->getLogin();
 // $newUser->getEmail();

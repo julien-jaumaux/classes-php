@@ -77,6 +77,8 @@
                 echo "votre compte a été modifié";
             }
 
+                //FUNCTION ISCONNECTED
+                
             public function isConnected(){
                 if(isset($_SESSION['login'])){
                     echo "vous êtes connecté <br>";
