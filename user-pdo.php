@@ -10,7 +10,6 @@ class Userpdo
     public $email;
     public $firstname;
     public $lastname;
-
     protected $bdd;
 
     public function __construct()
@@ -40,12 +39,23 @@ class Userpdo
         return $result;
     }
 
-
-
               //FUNCTION CONNECT
 
+            public function connect($login, $password)
+            {
+                $recupUser = $this->bdd->prepare("SELECT login,password FROM utilisateurs WHERE login = ? AND password = ?");
+                $recupUser->execute([$login, $password]);
 
-            
+                if ($recupUser->rowCount() > 0) {
+                echo "<br>bienvenue $login <br>'";
+                $_SESSION['login'] = $login;
+                $_SESSION['password'] = $password;
+                
+                } else {
+                    echo "<br>Mot de passse ou login inconnue<br>";
+                }
+            }
+
             //FUNCTION DISCONNECT
 
 
@@ -78,10 +88,11 @@ class Userpdo
 
     
 }
-var_dump($_SESSION);
+
 $newUser = new Userpdo();
-$newUser->register("test5", "test5","test5@com","test5","test5");
-// $newUser->connect("tes5", "test5");
+//$newUser->register("test5", "test5","test5@com","test5","test5");
+$newUser->connect("test5", "test5");
+var_dump($_SESSION);
 // $newUser->disconnect();
 // $newUser->update("test5","test5","test5@com","test5","test5");
 // $newUser->getLogin();
