@@ -58,6 +58,11 @@ class Userpdo
 
             //FUNCTION DISCONNECT
 
+            public function disconnect(){
+                
+                session_destroy();
+            }
+
 
 
             //FUNCTION DELETE
@@ -90,10 +95,10 @@ class Userpdo
 }
 
 $newUser = new Userpdo();
-//$newUser->register("test5", "test5","test5@com","test5","test5");
-$newUser->connect("test5", "test5");
 var_dump($_SESSION);
-// $newUser->disconnect();
+//$newUser->register("test5", "test5","test5@com","test5","test5");
+//$newUser->connect("test5", "test5");
+$newUser->disconnect();
 // $newUser->update("test5","test5","test5@com","test5","test5");
 // $newUser->getLogin();
 // $newUser->delete();
