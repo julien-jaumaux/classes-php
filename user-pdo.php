@@ -63,11 +63,14 @@ class Userpdo
                 session_destroy();
             }
 
-
-
             //FUNCTION DELETE
 
-
+            public function delete(){
+                $supteUser = $this->bdd->prepare("DELETE FROM utilisateurs WHERE login = ?");
+                $supteUser->execute([$_SESSION['login']]);
+                session_destroy();
+                echo '<br>votre compte a été supprimer<br>';
+            }
 
             //FUNCTION UPDATE
 
@@ -95,10 +98,11 @@ class Userpdo
 }
 
 $newUser = new Userpdo();
-var_dump($_SESSION);
-//$newUser->register("test5", "test5","test5@com","test5","test5");
-//$newUser->connect("test5", "test5");
-$newUser->disconnect();
+
+// $newUser->register("test5", "test5","test5@com","test5","test5");
+// $newUser->connect("test5", "test5");
+// $newUser->disconnect();
+// $newUser->delete();
 // $newUser->update("test5","test5","test5@com","test5","test5");
 // $newUser->getLogin();
 // $newUser->delete();
@@ -108,4 +112,5 @@ $newUser->disconnect();
 // $newUser->getEmail();
 // $newUser->getFirstname();
 // $newUser->getLastname();
+var_dump($_SESSION);
 ?>
