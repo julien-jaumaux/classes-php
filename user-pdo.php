@@ -93,20 +93,59 @@ class Userpdo
             //FUNCTION GETALLINFOS
 
             public function getAllInfos(){
-
+                $recupUser = $this->bdd->prepare("SELECT * FROM utilisateurs WHERE login = ?");
+                $recupUser->execute([$_SESSION['login']]);
+                $result = $recupUser->fetchAll(PDO::FETCH_ASSOC);
+                var_dump($result);
+                return $result;
             }
 
             //FUNCTION GETLOGIN
-
-
+            
+            public function getLogin()
+            {
+        
+                $recupUser = $this->bdd->prepare("SELECT * FROM utilisateurs WHERE login = ?");
+                $recupUser->execute([$_SESSION['login']]);
+                $result = $recupUser->fetchAll(PDO::FETCH_ASSOC);
+                var_dump($result[0]['login']);
+                return $result[0]['login'];
+            }
+        
             //FUNCTION GETEMAIL
 
-
+            public function getEmail()
+            {
+                $recupUser = $this->bdd->prepare("SELECT * FROM utilisateurs WHERE login = ?");
+                $recupUser->execute([$_SESSION['login']]);
+                $result = $recupUser->fetchAll(PDO::FETCH_ASSOC);
+                var_dump($result[0]['email']);
+                return $result[0]['email'];
+            }
+        
             //FUNCTION GETFIRSTNAME
 
+            public function getFirstName()
+            {
+                $recupUser = $this->bdd->prepare("SELECT * FROM utilisateurs WHERE login = ?");
+                $recupUser->execute([$_SESSION['login']]);
+                $result = $recupUser->fetchAll(PDO::FETCH_ASSOC);
+                var_dump($result[0]['firstname']);
+                return $result[0]['firstname'];
+            }
+        
             //FUNCTION GETLASTNAME
 
-
+            public function getLastName()
+            {
+        
+                $recupUser = $this->bdd->prepare("SELECT * FROM utilisateurs WHERE login = ?");
+                $recupUser->execute([$_SESSION['login']]);
+                $result = $recupUser->fetchAll(PDO::FETCH_ASSOC);
+                var_dump($result[0]['lastname']);
+                return $result[0]['lastname'];
+            }
+        
 
     
 }
@@ -119,11 +158,11 @@ $newUser = new Userpdo();
 // $newUser->delete();
 // $newUser->update("test51","test51","test51@com","test51","test51");
 // $newUser->delete();
- $newUser->isConnected();
+// $newUser->isConnected();
 // $newUser->getAllinfos();
 // $newUser->getLogin();
 // $newUser->getEmail();
 // $newUser->getFirstname();
 // $newUser->getLastname();
-var_dump($_SESSION);
+ var_dump($_SESSION);
 ?>
