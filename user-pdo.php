@@ -21,7 +21,7 @@ class Userpdo
         try {
             $this->bdd = new PDO("mysql:host=$servername;dbname=classes", $username, $password);
             $this->bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            echo 'Connexion réussie';
+            echo 'Connexion réussie<br>';
         } catch (PDOException $e) {
             echo "Erreur : " . $e->getMessage();
         }
@@ -66,17 +66,18 @@ class Userpdo
             //FUNCTION DELETE
 
             public function delete(){
-                $supteUser = $this->bdd->prepare("DELETE FROM utilisateurs WHERE login = ?");
-                $supteUser->execute([$_SESSION['login']]);
+                $supUser = $this->bdd->prepare("DELETE FROM utilisateurs WHERE login = ?");
+                $supUser->execute([$_SESSION['login']]);
                 session_destroy();
                 echo '<br>votre compte a été supprimer<br>';
             }
 
             //FUNCTION UPDATE
 
-
-
-
+            public function update($login, $password, $email, $firstname, $lastname){
+                $updateUser = $this->bdd->prepare("UPDATE utilisateurs SET login=?, password=?, email=?, firstname=?, lastname=? WHERE login = ?");
+                $updateUser->execute([$login, $password, $email, $firstname, $lastname, $_SESSION['login']]);
+            }
 
             //FUNCTION GETALLINFOS
 
@@ -103,7 +104,7 @@ $newUser = new Userpdo();
 // $newUser->connect("test5", "test5");
 // $newUser->disconnect();
 // $newUser->delete();
-// $newUser->update("test5","test5","test5@com","test5","test5");
+// $newUser->update("test51","test51","test51@com","test51","test51");
 // $newUser->getLogin();
 // $newUser->delete();
 // $newUser->isConnected();
